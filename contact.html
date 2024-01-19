@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meow Store</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-hA0w8J+Kl9Mx9aq00bBSA0RPZM4wBfN1j1Ih2tOAEmz1Chom5uSh1tC2FVEvU5xj" crossorigin="anonymous"> 
+    <script src="// script.js
+    document.addEventListener('DOMContentLoaded', function () {
+        const cartItemsContainer = document.getElementById('cart-items');
+        const productButtons = document.querySelectorAll('.product button');
+
+        productButtons.forEach(button => {
+            button.addEventListener('click', addToCart);
+        });
+
+        function addToCart() {
+            const product = this.parentElement;
+            const productName = product.querySelector('h2').innerText;
+
+            // Cek apakah item sudah ada di keranjang
+            if (isItemInCart(productName)) {
+                alert('Item is already in your shopping cart.');
+            } else {
+                const productClone = product.cloneNode(true);
+                const removeButton = document.createElement('button');
+                removeButton.textContent = 'Remove from Cart';
+                removeButton.addEventListener('click', removeFromCart);
+
+                productClone.appendChild(removeButton);
+                cartItemsContainer.appendChild(productClone);
+
+                alert('Item has been added to your shopping cart.');
+            }
+        }
+
+        function removeFromCart() {
+            const product = this.parentElement;
+            cartItemsContainer.removeChild(product);
+        }
+
+        function isItemInCart(itemName) {
+            const cartItems = cartItemsContainer.querySelectorAll('.product h2');
+            for (const item of cartItems) {
+                if (item.innerText === itemName) {
+                    return true;
+                }
+            }
+            return false;
+        }
+    });
+    .js"></script>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <h1>Welcome to <span class="highlight">Meow</span> Store</h1>
+            <nav>
+                <a href="index.html">Products</a>
+                <a href="cart.html">Cart</a>
+                <a href="contact.html">Contact</a>
+                <a href="about.html">About Us</a>
+            </nav>
+        </div>
+    </header>
+
+    <section id="contact" class="container">
+        <h2>Connect with Us</h2>
+        <div class="medsos">
+            <ul>
+                <li><a href="https://www.instagram.com/abc.ind_?igshid=eTc0NnN3dXlxc3Vm" target="_blank"><i class="fab fa-instagram"></i></a></li>
+                <li><a href="https://twitter.com/grayonee?t=88S2CwtQIHkHcGUk0iEnNA&s=09" target="_blank"><i class="fab fa-twitter"></i></a></li>
+                <li><a href="https://www.facebook.com/profile.php?id=100045229830310&mibextid=ZbWKwL" target="_blank"><i class="fab fa-facebook"></i></a></li>
+            </ul>
+        </div>
+    </section>
